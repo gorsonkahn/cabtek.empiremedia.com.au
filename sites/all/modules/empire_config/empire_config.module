@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Empire config feature.
+ */
+
+include_once 'empire_config.features.inc';

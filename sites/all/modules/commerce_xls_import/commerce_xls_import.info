@@ -1,0 +1,39 @@
+name = Commerce XLS Import
+description = Import commerce products/entities from an xls file
+core = 7.x
+package = Commerce (contrib)
+
+dependencies[] = commerce
+dependencies[] = commerce:commerce_product
+dependencies[] = commerce:commerce_product_ui
+dependencies[] = libraries
+
+stylesheets[all][] = css/commerce_xls_import.css
+
+files[] = tests/commerce_xls_import.test
+files[] = classes/CommerceXlsImportSettings.inc
+files[] = classes/CommerceXlsImportReadFilter.inc
+
+; Classes for field type handlers.
+files[] = classes/CommerceXlsImportValueHandlerInterface.inc
+files[] = classes/CommerceXlsImportValueHandler.inc
+files[] = classes/CommerceXlsImportBooleanHandler.inc
+files[] = classes/CommerceXlsImportCommercePriceHandler.inc
+files[] = classes/CommerceXlsImportCommerceProductReferenceHandler.inc
+files[] = classes/CommerceXlsImportEntityReferenceHandler.inc
+files[] = classes/CommerceXlsImportImageHandler.inc
+files[] = classes/CommerceXlsImportLanguageHandler.inc
+files[] = classes/CommerceXlsImportListBooleanHandler.inc
+files[] = classes/CommerceXlsImportNumberDecimalHandler.inc
+files[] = classes/CommerceXlsImportSkuHandler.inc
+files[] = classes/CommerceXlsImportTaxonomyTermReferenceHandler.inc
+files[] = classes/CommerceXlsImportTextHandler.inc
+files[] = classes/CommerceXlsImportTextWithSummaryHandler.inc
+files[] = classes/CommerceXlsImportVariationTitleHandler.inc
+
+; Information added by Drupal.org packaging script on 2017-02-02
+version = "7.x-1.0-beta2+7-dev"
+core = "7.x"
+project = "commerce_xls_import"
+datestamp = "1485998899"
+

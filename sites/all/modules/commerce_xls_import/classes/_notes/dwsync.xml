@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="CommerceXlsImportBooleanHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportCommercePriceHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportCommerceProductReferenceHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportEntityReferenceHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportImageHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportLanguageHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportListBooleanHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportNumberDecimalHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportSettings.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportSkuHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportTaxonomyTermReferenceHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportTextHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportTextWithSummaryHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportValueHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportValueHandlerInterface.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+<file name="CommerceXlsImportVariationTitleHandler.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131304723400000000" remote="131306776800000000" Dst="2" />
+</dwsync>

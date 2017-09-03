@@ -1,0 +1,13 @@
+name = OptGroup Select
+description = "OptGroup Select"
+package = OptGroup Select
+core = 7.x
+dependencies[] = taxonomy
+dependencies[] = field
+
+; Information added by Drupal.org packaging script on 2017-07-05
+version = "7.x-1.0"
+core = "7.x"
+project = "optgroup_select"
+datestamp = "1499258048"
+

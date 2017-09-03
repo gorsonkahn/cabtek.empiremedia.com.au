@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Commerce_xls_import.install.
+ *
+ * Install, update, and uninstall functions for the commerce_xls_import.
+ */
+
+/**
+ * Uninstall Function.
+ */
+function commerce_xls_import_uninstall() {
+  variable_del('commerce_xls_import_import_count_status');
+  variable_del('commerce_xls_import_completed');
+  variable_del('commerce_xls_import_last_import');
+  variable_del('commerce_xls_import_error_count');
+  variable_del('commerce_xls_import_field_aliases');
+}
+
+/**
+ * Table to keep track of whether an attempted stop has occurred.
+ *
+ * @return array $schema
+ *  Array containing the required descriptions for creating the
+ *  commerce_xls_import, and commerce_xls_import_errors tables.
+ */
+function commerce_xls_import_schema() {
+  $schema = array();
+
+  $schema['commerce_xls_import'] = array(
+    'fields' => array(
+      'status' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => 'pending',
+      ),
+      'handle' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function commerce_xls_import_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    $t = get_t();
+    $library = libraries_load('spout');
+
+    if (empty($library['loaded'])) {
+      $requirements['commerce_xls_import_php_spout'] = array(
+        'title' => $t('Spout'),
+        'value' => 'Not Installed',
+        'description' => $t('In order to import/export with Commerce XLS Import, you must first download the library from !link and put it under sites/*/libraries/spout/', array('!link' => '<a href="https://github.com/box/spout/releases">Github</a>')),
+        'severity' => REQUIREMENT_ERROR,
+      );
+    }
+    else {
+      $requirements['commerce_xls_import_php_spout'] = array(
+        'title' => $t('Spout'),
+        'value' => $t('Installed'),
+        'severity' => REQUIREMENT_OK,
+      );
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Drop the errors table.
+ */
+function commerce_xls_import_update_7000() {
+  if (db_table_exists('commerce_xls_import_errors')) {
+    db_drop_table('commerce_xls_import_errors');
+  }
+}

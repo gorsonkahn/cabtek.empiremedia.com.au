@@ -1,0 +1,11 @@
+name = Physical Fields
+description = Defines fields (e.g. weight and dimensions) to support describing the physical attributes of entities.
+package = Fields
+core = 7.x
+
+
+; Information added by drush on 2016-06-17
+version = ""
+project = "physical"
+datestamp = "1466186424"
+

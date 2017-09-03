@@ -1,0 +1,200 @@
+<?php
+
+/**
+ * @file
+ * Commerce_xls_import.test.
+ *
+ * Tests.
+ */
+
+use Box\Spout\Reader\ReaderFactory;
+use Box\Spout\Writer\WriterFactory;
+use Box\Spout\Common\Type;
+
+/**
+ * Class CommerceXlsImportTestCase.
+ */
+class CommerceXlsImportTestCase extends CommerceBaseTestCase {
+  protected $adminUser;
+  protected $privilegedUser;
+  protected $normalUser;
+
+  /**
+   * GetInfo().
+   *
+   * @return array
+   *  An array containing name, description, and group text.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Commerce XLS Import Tests',
+      'description' => 'Ensure Commerce XLS Import functions properly',
+      'group' => 'Drupal Commerce XLS Import',
+    );
+  }
+
+  /**
+   * Setup().
+   * @{inheritdoc}
+   */
+  public function setUp() {
+    $modules = parent::setUpHelper('all', array('commerce_xls_import'));
+    parent::setUp($modules);
+
+    // Create a dummy product display content type.
+    $this->createDummyProductDisplayContentType();
+
+    // Many of the following values will be defaulted, they're included here as
+    // an illustrative examples.
+    // See http://api.drupal.org/api/function/field_create_instance/7
+    $instance = array(
+      'field_name' => 'field_image',
+      'entity_type' => 'commerce_product',
+      'label' => 'Image',
+      'bundle' => 'product',
+      'description' => t('Upload an image to go with this product display.'),
+      'required' => FALSE,
+    );
+    field_create_instance($instance);
+    field_update_field(array('field_name' => 'field_image', 'cardinality' => FIELD_CARDINALITY_UNLIMITED));
+
+    $this->adminUser = $this->drupalCreateUser(array(
+      'administer users',
+      'administer permissions',
+    ));
+
+    $this->privilegedUser = $this->drupalCreateUser(array(
+      'administer commerce import',
+      'administer commerce_product entities',
+    ));
+
+    $this->normalUser = $this->drupalCreateUser();
+  }
+
+  /**
+   * Test permissions.
+   */
+  public function testCommerceXlsImportPermissions() {
+    $this->drupalLogin($this->privilegedUser);
+    $this->drupalGet('admin/commerce/products/commerce_xls_import');
+    $this->assertResponse('200', 'Privileged user was able to correctly access the admin page');
+
+    $this->drupalLogin($this->normalUser);
+    $this->drupalGet('admin/commerce/products/commerce_xls_import');
+    $this->assertResponse('403', 'Unprivileged user was unable to access the admin page');
+  }
+
+  /**
+   * Test product types
+   */
+  public function testCommerceXlsImportProductTypes() {
+    $this->drupalLogin($this->privilegedUser);
+    $this->drupalGet('admin/commerce/products/commerce_xls_import');
+    $this->assertFieldByXPath("//select[@name='product_type']/option[@value='product']", 'Product', 'Product type \'Product\' found');
+  }
+
+  /**
+   * Test xls upload
+   */
+  public function testCommerceXlsImportValidate() {
+    $this->drupalLogin($this->privilegedUser);
+
+    $edit = array(
+      'display_type' => 'product_display',
+      'files[import_file]' => drupal_get_path('module', 'commerce_xls_import') . '/sample_files/sample.xlsx',
+      'files[product_images]' => drupal_get_path('module', 'commerce_xls_import') . '/sample_files/product_images.zip',
+    );
+    $this->drupalPost('admin/commerce/products/commerce_xls_import', $edit, 'Validate File');
+    $this->assertText('Validate Completed, 24 records checked', 'Import file validation completed');
+  }
+
+  /**
+   * Test xls import
+   */
+  public function testCommerceXlsImportImport() {
+    libraries_load('spout');
+
+    $this->drupalLogin($this->privilegedUser);
+
+    $edit = array(
+      'display_type' => 'product_display',
+      'files[import_file]' => drupal_get_path('module', 'commerce_xls_import') . '/sample_files/sample.xlsx',
+      'files[product_images]' => drupal_get_path('module', 'commerce_xls_import') . '/sample_files/product_images.zip',
+    );
+    $this->drupalPost('admin/commerce/products/commerce_xls_import', $edit, 'Begin Full Import');
+    $this->assertText('Import Completed, 24 records processed', 'Import file processed');
+
+    // Check that each valid product exists on the product page and each invalid
+    // product does not.
+    $this->drupalGet('admin/commerce/products');
+
+    $result = ReaderFactory::create(Type::XLSX);
+    $result->open(drupal_realpath(file_build_uri('product_import_results.xlsx')));
+    $result->getSheetIterator()->rewind();
+    $sheet1 = $result->getSheetIterator()->current();
+
+    $import = ReaderFactory::create(Type::XLSX);
+    $import->open(drupal_get_path('module', 'commerce_xls_import') . '/sample_files/sample.xlsx');
+    $import->getSheetIterator()->rewind();
+    $import->getSheetIterator()->valid();
+    $sheet2 = $import->getSheetIterator()->current();
+
+    $sheet1->getRowIterator()->rewind();
+    $index = 0;
+    foreach ($sheet2->getRowIterator() as $row) {
+      $result_row = $sheet1->getRowIterator()->current();
+
+      foreach($row as $label => $data) {
+        $this->assertEqual($data, $result_row[$label], 'Result xls matches import xls, ' . $data . ' is equal to ' . $result_row[$label] . ' on line ' . ($index + 1));
+      }
+
+      if ($index > 0 && $index < 20) {
+        //Valid Sku
+        $this->assertText($row[2], $row[1] . ':' . $row[2] . ' found');
+      }
+      else if ($index >= 20) {
+        //Invalid Sku
+        $this->assertNoText($row[0], $row[1] . ':' . $row[2] . ' not found');
+      }
+
+      $sheet1->getRowIterator()->next();
+      $index++;
+    }
+  }
+
+  /**
+   * Test xls export
+   */
+  public function testCommerceXlsImportExport() {
+    libraries_load('spout');
+
+    // Create dummy product display nodes (and their corresponding product
+    //  entities).
+    $sku = 'PROD-01';
+    $product_name = 'Product One';
+    $product = $this->createDummyProduct($sku, $product_name);
+    $product_node = $this->createDummyProductNode(array($product->product_id), $product_name);
+
+    $this->drupalLogin($this->privilegedUser);
+    $edit = array(
+      'display_type' => 'product_display'
+    );
+    $this->drupalPost('admin/commerce/products/commerce_xls_import/export', $edit, 'Begin Export');
+    $this->assertText('1 products exported', 'Export file generated');
+
+    //Loop thru xls and check if all skus are in the product page, make sure #18 and above do not appear (no sku)
+    $filepath = drupal_realpath(file_build_uri('export/commerce_xls_export_product_display.xlsx'));
+    $reader = ReaderFactory::create(Type::XLSX);
+    $reader->open($filepath);
+    foreach ($reader->getSheetIterator() as $sheet) {
+      $index = 0;
+      foreach ($sheet->getRowIterator() as $row) {
+        //skip header row
+        if($index != 0) {
+          $this->assertEqual($row[2], 'PROD-01', 'PROD-01 found in export file');
+        }
+        $index++;
+      }
+    }
+  }
+}
