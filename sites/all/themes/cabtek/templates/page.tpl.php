@@ -85,6 +85,9 @@
   
   <?php if ($page['footer']): ?>
   <footer id="footer">
+  	<?php if ($page['footer_super']): ?>
+    	<div class="footer-super"><?php print render($page['footer_super']); ?></div>
+    <?php endif; ?>
     <div class="container">
     	<?php if ($secondary_menu): ?>
       	<nav class="footer-menu">
@@ -92,8 +95,9 @@
           	<?php print theme('links', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary', 'class' => array('sub-menu')))); ?>
           </div>
         </nav>
-      <!-- /secondary menu -->
       <?php endif; ?>
+      <!-- /secondary menu -->
+      
       <?php print render($page['footer']); ?>
     </div>
   </footer>

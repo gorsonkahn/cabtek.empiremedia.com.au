@@ -214,16 +214,15 @@ VIEW MATERIALS
 	display:flex;
 	flex-wrap:wrap;
 }
-.view-materials .view-content div{
+.view-materials .view-content div {
 	width:48%;
 	flex:0 1 auto;
 	transition: all .3s ease;
 	margin:0 4px 4px 0;
 	position:relative;
-	background:#323a45;
 }
 .view-materials .view-content div:hover {
-	transform: scale(2);
+	transform: scale(1.1);
 	z-index:100
 }
 @media screen and (min-width: 45em) {
@@ -245,4 +244,10 @@ VIEW MATERIALS
 	width:100%;
 	background:#fff;
 	color:#323a45;
+}
+/*MATERIALS FOOTER*/
+
+.footer-super .slides li {
+	border-right:4px solid #fff;
+	position:relative
 }
