@@ -5,7 +5,8 @@ html {
   box-sizing: inherit;
 }
 #header .container {
-	padding:0 8px
+	padding:0 8px;
+	display:flex
 }
 #header .form-text{
 	width:300px
@@ -15,6 +16,7 @@ html {
 }
 #logo {
 	margin-top:0.5em;
+	width:50%;
 }
 #logo span{
 	font-size:64px;
@@ -25,13 +27,23 @@ html {
 	display:inline-block;
 	font-weight:normal;
 }
+#header-region {
+	width:50%;
+}
+#header-region .views-exposed-widgets {
+	display:flex;
+	justify-content:flex-end
+}
+#header-region .views-exposed-widgets .form-text{
+	width:100%
+}
 .container {
 	max-width: 68em;
 	margin: 0 auto;
 	width: auto;
 }
 #content {
-	padding: 1em;
+	padding: 1.5rem 1rem 1rem 1rem;
 	min-height:20rem;
 }
 @media screen and (min-width: 45em) {
@@ -39,9 +51,7 @@ html {
 		display:flex;
 		justify-content: space-between;
 	}
-	#header .form-text{
-		width:auto;
-	}
+	
 	#content-area{
 		padding-bottom:2rem;
 	}

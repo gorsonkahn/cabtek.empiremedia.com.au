@@ -7,7 +7,7 @@
   <!-- ______________________ HEADER _______________________ -->
   
   <header id="header">
-    <div class="container"> <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>" rel="home" id="logo"><span>DIY</span><span id="logo-sub">Custom<br>Kitchens v0.36</span></a>
+    <div class="container"> <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>" rel="home" id="logo"><span>DIY</span><span id="logo-sub">Custom<br>Kitchens v4.00</span></a>
       <?php if ($site_name || $site_slogan): ?>
       <?php if ($site_name): ?>
       <?php if ($title): ?>
