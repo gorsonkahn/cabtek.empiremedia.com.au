@@ -20,6 +20,7 @@ sites/all/modules/README.txt
 sites/all/themes/README.txt
 _test/
 _notes/
+_compareTemp/
 
 # Ignore everything but the "sites" folder ( for non core developer )
 .htaccess

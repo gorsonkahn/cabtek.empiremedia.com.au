@@ -40,11 +40,6 @@ a:hover{
 #page_top .menu a {
 	padding-left:36px !important ;
 }
-
-/*TOP LOGIN */
-@media screen and (max-width: 40em) {
-	
-}
 .block-login .menu{
 	display:flex;
 }
@@ -54,10 +49,13 @@ a:hover{
 	font-weight:300;
 	transition: all ease-in-out .4s;
 	background:5px 50% no-repeat;
+	line-height:0.7rem
 }
 .block-login .menu a:hover {
-	background:5px 50% no-repeat #e74c3c;
-	color:#fff
+	/*background:5px 50% no-repeat #e74c3c;*/
+	color:#323a45;
+	background:5px 50% no-repeat;
+	text-decoration:underline
 }
 .block-login .menu .my-account a {
 	background-image:url(../images/optimized/icon-user-my-account.png);		
@@ -86,21 +84,36 @@ a:hover{
 }
 .block-top-cart .line-item-summary{
 	display:flex;
-	justify-content: flex-end
+	justify-content: flex-end;
+	font-size:0.7rem
 }
 .block-top-cart span {
 	padding:0.5rem 0;
 	display:inline-block
+}
+.block-top-cart .line-item-total-label {
+	display:none
 }
 .line-item-summary-checkout a,
 .line-item-summary-checkout a:visited {
 	color:#fff;
 	background:#e74c3c;
 	display:inline-block;
-	padding:10px;
+	
 }
 .line-item-summary-checkout a:hover {
 	background:#34495e
+}
+@media screen and (min-width: 40em) {
+	#page_top .menu a {
+		padding:0.5rem 0.5rem 0.5rem 36px !important ;
+		line-height:1.2rem
+	}
+	.block-top-cart .line-item-summary{
+		font-size:1rem
+		
+	}
+
 }
 
 /* HEADER BAR */
@@ -136,8 +149,9 @@ a:hover{
 	padding: 0.3rem 0.8rem;
 	display: block;
 	text-transform: uppercase;
-	font-size:0.7rem 
-}
+	font-size:0.7rem;
+	line-height:1rem
+} 
 @media screen and (min-width: 40em) {
 	.menu a,
 	.sub-menu a {
@@ -149,7 +163,8 @@ a:hover{
 .menu a:hover,
 .sub-menu .active a,
 .sub-menu a:hover {
-	background: #e74c3c
+	background: #e74c3c;
+	color:#fff
 }
 
 body .menu li {
