@@ -4,57 +4,68 @@ html {
 *, *::after, *::before {
   box-sizing: inherit;
 }
-#header .container {
-	padding:0 8px;
-	display:flex
+/*
+ HEADER REGION
+ */
+/* HEADER BAR */
+#header {
+  clear: both;
+  margin: 0.3rem 0.5rem 0.5rem 0.3rem
 }
-#header .form-text{
-	width:300px
-}
-.no-sidebars #content {
-  width: 100%;
+#site-name {
+  font-size: 2.2em;
+  line-height: 1.3em;
+  font-weight: 300
 }
 #logo {
-	margin-top:0.5em;
-	width:50%;
+  margin-top:0.5em;
+  width:100%;
+  display: block;
 }
 #logo span{
-	font-size:64px;
-	font-weight:bold
+  font-size:64px;
+  font-weight:bold
 }
 #logo #logo-sub {
-	font-size:32px;
-	display:inline-block;
-	font-weight:normal;
+  font-size:32px;
+  display:inline-block;
+  font-weight:normal;
 }
 #header-region {
-	width:50%;
+  width:100%;
+	padding-left:0.2rem
 }
 #header-region .views-exposed-widgets {
-	display:flex;
-	justify-content:flex-end
+  display:flex;
 }
+#header-region .views-exposed-widgets #edit-search-api-views-fulltext-wrapper,
 #header-region .views-exposed-widgets .form-text{
-	width:100%
+ width:100%
 }
+#header-region .views-exposed-widgets  .views-submit-button {
+  padding:8px 0 0 0;
+}
+
+/*
+END OF HEADER
+ */
 .container {
-	max-width: 68em;
-	margin: 0 auto;
-	width: auto;
+  max-width: 68em;
+  margin: 0 auto;
+  width: auto;
 }
 #content {
-	padding: 1.5rem 1rem 1rem 1rem;
-	min-height:20rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+  min-height:20rem;
 }
 @media screen and (min-width: 45em) {
-	#header .container {
-		display:flex;
-		justify-content: space-between;
-	}
-	
-	#content-area{
-		padding-bottom:2rem;
-	}
+  #header .container {
+    display:flex;
+    justify-content: space-between;
+  }
+  #content-area{
+    padding-bottom:2rem;
+  }
   .no-sidebars #content {
     float: left;
     display: block;
@@ -75,6 +86,9 @@ html {
   .no-sidebars #content:last-child {
     margin-right: 0;
   }
+}
+.no-sidebars #content {
+  width: 100%;
 }
 .one-sidebar.sidebar-second #content {
   width: 100%;
@@ -166,7 +180,7 @@ html {
     margin-right: 3.22581%;
     width: 22.58065%;
     margin-left: -77.41935%;
-		padding-top:1rem
+    padding-top:1rem
   }
   #sidebar-first:last-child {
     margin-right: 0;
@@ -193,7 +207,7 @@ html {
 
 #sidebar-second {
   width: 100%;
-	
+
 }
 @media screen and (min-width: 45em) {
   #sidebar-second {
@@ -202,7 +216,7 @@ html {
     margin-right: 3.22581%;
     width: 22.58065%;
     margin-left: 0%;
-		padding-top:1rem
+    padding-top:1rem
   }
   #sidebar-second:last-child {
     margin-right: 0;
