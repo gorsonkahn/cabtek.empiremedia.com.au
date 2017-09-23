@@ -169,6 +169,14 @@ PRODUCTS AND ALL PRODUCTS VIEWS
 }
 .product-view-item article > div  {
 	padding:0 1rem;
+	displa:flex;
+	flex-flow: column nowrap;
+}
+.node-156-product-commerce-price-wrapper{
+	margin-top:auto
+}
+.product-view-item article .field-name-title-field {
+	border: 1px solid #ff0000;
 	
 }
 

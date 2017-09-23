@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractMessage.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936511560315" remote="131299992000000000" Dst="1" />
+<file name="MessageFactory.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936512995201" remote="131299992000000000" Dst="1" />
+<file name="MessageFactoryInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936513075227" remote="131299992000000000" Dst="1" />
+<file name="Request.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936514840653" remote="131299992000000000" Dst="1" />
+<file name="RequestInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936514920691" remote="131299992000000000" Dst="1" />
+<file name="MessageInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936515841564" remote="131299992000000000" Dst="1" />
+<file name="Response.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936516574722" remote="131299992000000000" Dst="1" />
+<file name="ResponseCode.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936516734761" remote="131299992000000000" Dst="1" />
+<file name="ResponseInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936518144914" remote="131299992000000000" Dst="1" />
+</dwsync>

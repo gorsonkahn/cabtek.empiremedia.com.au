@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractPayment.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936519053869" remote="131299992000000000" Dst="1" />
+<file name="Collection.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936519123886" remote="131299992000000000" Dst="1" />
+<file name="Payment.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936520584249" remote="131299992000000000" Dst="1" />
+<file name="PaymentFactory.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936520936482" remote="131299992000000000" Dst="1" />
+<file name="PaymentFactoryInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936521200512" remote="131299992000000000" Dst="1" />
+<file name="PaymentInterface.php" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936525743887" remote="131299992000000000" Dst="1" />
+</dwsync>

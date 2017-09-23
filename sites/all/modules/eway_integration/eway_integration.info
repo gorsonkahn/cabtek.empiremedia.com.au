@@ -1,0 +1,11 @@
+name = eWAY Integration
+description = Implements eWAY payment services (Core).
+package = eWAY
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2016-12-08
+version = "7.x-1.8"
+core = "7.x"
+project = "eway_integration"
+datestamp = "1481156891"
+

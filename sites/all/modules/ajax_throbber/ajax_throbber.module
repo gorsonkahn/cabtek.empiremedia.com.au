@@ -1,0 +1,215 @@
+<?php
+/**
+ * @file
+ * Drupal module file ajax_throbber
+ */
+
+define('AJAX_THROBBER_PERMISSION', 'administer ajax throbber');
+define('AJAX_THROBBER_VARIABLE_EXCLUDE_PATH', 'ajax_throbber_exclude_paths');
+define('AJAX_THROBBER_VARIABLE_INCLUDE_PATH', 'ajax_throbber_include_paths');
+define('AJAX_THROBER_VARIABLE_EXCL_INCL', 'ajax_throbber_exclude_include');
+define('AJAX_THROBBER_ADMIN_TEST_SLEEP_TIME', 5);
+define('AJAX_THROBBER_ADMIN_PATH', 'admin/config/user-interface/ajax_throbber');
+
+/**
+ * Implements hook_menu().
+ *
+ * @return array
+ */
+function ajax_throbber_menu() {
+  $items = array();
+
+  $items[AJAX_THROBBER_ADMIN_PATH] = array(
+    'title' => 'Ajax Throbber - Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ajax_throbber_admin'),
+    'file' => 'ajax_throbber.admin.inc',
+    'access arguments' => array(AJAX_THROBBER_PERMISSION),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission.
+ */
+function ajax_throbber_permission() {
+  return array(
+    AJAX_THROBBER_PERMISSION => array(
+      'title' => t('Administer ajax throbber'),
+      'description' => t('Configure ajax throbber settings.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_page_alter().
+ *
+ * @param $variables
+ */
+function ajax_throbber_page_alter(&$variables) {
+  $is_valid = _ajax_throbber_check_if_path_is_valid();
+
+  if (!$is_valid) {
+    return;
+  }
+
+  // Preferred color to css.
+  $throbber_selection = variable_get('ajax_throbber_selection',
+    'circle');
+  // 0, 174, 239, .8
+  // 0,255,0, .8
+  $bg_color = variable_get('ajax_throbber_bg_color', '255,255,255, .8');
+  $item_color = variable_get('ajax_throbber_item_color', '0, 174, 239, .8');
+
+  drupal_add_js(array(
+    'ajaxThrobber' => array(
+      'bg_color' => $bg_color,
+      'item_color' => $item_color,
+      'type' => $throbber_selection,
+    )
+  ), 'setting');
+
+  drupal_add_css('.ajax-progress-throbber { display: none; }', 'inline');
+
+  // Add correct css file and return correct html.
+  $html = _ajax_throbber_add_correct_throbber($throbber_selection);
+
+  // Add the HTML.
+  $variables['content']['system_main']['ajax_throbber'] = array(
+    '#weight' => -10,
+    '#markup' => $html,
+  );
+}
+
+/**
+ * Add correct css file.
+ */
+function _ajax_throbber_add_correct_throbber($throbber_selection) {
+  $module_path = drupal_get_path('module', 'ajax_throbber');
+  $module_css_path = $module_path . '/css/stylesheets/ajax_throbber_';
+
+  // Default HTML.
+  $html = <<<HTMLTHROBBER
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+HTMLTHROBBER;
+
+  switch ($throbber_selection) {
+    case 'circle':
+      // Last example.
+      drupal_add_css($module_css_path . 'circle.css');
+      $html = <<<LOADINGCIRCLEHTML
+  <div class="spinner">
+    <div class="spinner-container container1">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+    </div>
+    </div>
+LOADINGCIRCLEHTML;
+
+      break;
+
+    case 'fading_circle':
+      drupal_add_css($module_css_path . 'fading_circle.css');
+
+      break;
+
+    case 'square':
+      drupal_add_css($module_css_path . 'square.css');
+
+      break;
+
+    default:
+      drupal_add_css($module_css_path . 'three_dots.css');
+  }
+
+  return '<div class="overlay-spinner">' . $html . '</div>';
+}
+
+/**
+ * Check if path is not in exclusion list.
+ */
+function _ajax_throbber_check_if_path_is_valid() {
+  $exl_or_incl = variable_get(AJAX_THROBER_VARIABLE_EXCL_INCL, 'exclude');
+  $exclude_paths = variable_get(AJAX_THROBBER_VARIABLE_EXCLUDE_PATH, NULL);
+  $include_paths = variable_get(AJAX_THROBBER_VARIABLE_INCLUDE_PATH, NULL);
+
+  if (empty($exclude_paths) && empty($include_paths)) {
+    return TRUE;
+  }
+
+  $current_uri = current_path();
+
+  switch ($exl_or_incl) {
+    case 'exclude':
+      return _ajax_throbber_check_if_path_is_valid_exclude($current_uri,
+        $exclude_paths);
+
+    case 'include':
+      return _ajax_throbber_check_if_path_is_valid_include($current_uri,
+        $include_paths);
+  }
+}
+
+/**
+ * Checks include paths that are valid.
+ */
+function _ajax_throbber_check_if_path_is_valid_include($current_uri,
+                                                       $include_paths) {
+  // If it is in include paths return true.
+  if (!empty($include_paths)) {
+    $include_paths = explode(PHP_EOL, $include_paths);
+
+    foreach ($include_paths as $incl_path) {
+      $path_alias = drupal_get_path_alias($current_uri);
+
+      if ((drupal_match_path($current_uri, $incl_path) || drupal_match_path($path_alias, $incl_path))
+        && $current_uri != AJAX_THROBBER_ADMIN_PATH) {
+
+        return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+}
+
+/**
+ * Checks exclude paths that are valid.
+ */
+function _ajax_throbber_check_if_path_is_valid_exclude($current_uri,
+                                                       $exclude_paths) {
+  if (!empty($exclude_paths)) {
+    $exclude_paths = explode(PHP_EOL, $exclude_paths);
+
+    foreach ($exclude_paths as $excl_path) {
+      $path_alias = drupal_get_path_alias($current_uri);
+
+      if ((drupal_match_path($current_uri, $excl_path) || drupal_match_path($path_alias, $excl_path))
+        && $current_uri != AJAX_THROBBER_ADMIN_PATH) {
+        return FALSE;
+      }
+    }
+
+    return TRUE;
+  }
+}

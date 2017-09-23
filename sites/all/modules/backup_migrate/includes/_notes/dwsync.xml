@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="backup_migrate.drush.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936091233206" remote="131428501800000000" Dst="1" />
+<file name="destinations.browser.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936093043662" remote="131428501800000000" Dst="1" />
+<file name="crud.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936093403744" remote="131428501800000000" Dst="1" />
+<file name="destinations.email.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936095087488" remote="131428501800000000" Dst="1" />
+<file name="destinations.db.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936097236356" remote="131428501800000000" Dst="1" />
+<file name="destinations.file.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936097446344" remote="131428501800000000" Dst="1" />
+<file name="destinations.ftp.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936098914468" remote="131428501800000000" Dst="1" />
+<file name="destinations.nodesquirrel.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936102181861" remote="131428501800000000" Dst="1" />
+<file name="destinations.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936102451928" remote="131428501800000000" Dst="1" />
+<file name="destinations.s3.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936103674129" remote="131428501800000000" Dst="1" />
+<file name="files.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936103914837" remote="131428501800000000" Dst="1" />
+<file name="destinations.db.mysql.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936105033063" remote="131428501800000000" Dst="1" />
+<file name="filters.encryption.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936106393104" remote="131428501800000000" Dst="1" />
+<file name="filters.backup_restore.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936107559704" remote="131428501800000000" Dst="1" />
+<file name="filters.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936107868774" remote="131428501800000000" Dst="1" />
+<file name="filters.compression.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936108563622" remote="131428501800000000" Dst="1" />
+<file name="filters.statusnotify.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936109063790" remote="131428501800000000" Dst="1" />
+<file name="filters.utils.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936109448879" remote="131428501800000000" Dst="1" />
+<file name="locations.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936110175190" remote="131428501800000000" Dst="1" />
+<file name="profiles.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936110709796" remote="131428501800000000" Dst="1" />
+<file name="schedules.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936111630023" remote="131428501800000000" Dst="1" />
+<file name="sources.archivesource.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936112220163" remote="131428501800000000" Dst="1" />
+<file name="sources.db.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936112580267" remote="131428501800000000" Dst="1" />
+<file name="sources.db.mysql.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936113880014" remote="131428501800000000" Dst="1" />
+<file name="sources.filesource.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936114150081" remote="131428501800000000" Dst="1" />
+<file name="sources.inc" server="ftp.cabtek.empiremedia.com.au/public_html/" local="131505936114439459" remote="131428501800000000" Dst="1" />
+</dwsync>

@@ -329,7 +329,13 @@ PRODUCT DISPLAY
 #content-area article .grid-14,
 #content-area article .grid-14 #wrap,
 #content-area article .grid-14 .cloud-zoom img{
-		width: 100%
+	width: 100%
+}
+#content-area article .cloud-zoom-gallery-thumbs {
+	width:100%
+}
+#content-area article .cloud-zoom-gallery img{
+	width:33.333%
 }
 .commerce-product-field-commerce-price {
 	margin-bottom:1rem
