@@ -176,8 +176,7 @@ PRODUCTS AND ALL PRODUCTS VIEWS
 	margin-top:auto
 }
 .product-view-item article .field-name-title-field {
-	border: 1px solid #ff0000;
-	
+	min-height:4rem
 }
 
 @media screen and (min-width: 45em) {

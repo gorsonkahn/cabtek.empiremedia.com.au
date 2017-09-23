@@ -557,7 +557,7 @@ function title_active_language($langcode = NULL) {
 function title_entity_language($entity_type, $entity) {
   if (module_exists('entity_translation') && entity_translation_enabled($entity_type)) {
     $handler = entity_translation_get_handler($entity_type, $entity, TRUE);
-    $langcode = $handler->getLanguage();
+    $langcode = $handler->getFormLanguage();
   }
   else {
     $langcode = entity_language($entity_type, $entity);
@@ -613,7 +613,7 @@ function title_field_attach_submit($entity_type, $entity, $form, &$form_state) {
     // drupal_array_set_nested_value().
     $values = $form_state['values'];
     $values = drupal_array_get_nested_value($values, $form['#parents']);
-    $langcode = entity_language($entity_type, $entity);
+    $langcode = title_entity_language($entity_type, $entity);
 
     foreach ($fr_info as $legacy_field => $info) {
       if (!empty($form[$legacy_field]['#field_replacement'])) {
@@ -744,12 +744,13 @@ function title_tokens_alter(array &$replacements, array $context) {
       $entity = $context['data'][$context['type']];
       list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
       $options = $context['options'];
+      $sanitize = !empty($options['sanitize']);
 
       // Since Title tokens are mostly used in storage contexts we default to
       // the current working language, that is the entity language. Modules
       // using Title tokens in display contexts need to specify the current
       // display language.
-      $langcode = isset($options['language']) ? $options['language']->language : entity_language($entity_type, $entity);
+      $langcode = isset($options['language']) ? $options['language']->language : title_entity_language($entity_type, $entity);
 
       if ($fr_info) {
         foreach ($fr_info as $legacy_field => $info) {
@@ -762,7 +763,7 @@ function title_tokens_alter(array &$replacements, array $context) {
                 if (is_array($item)) {
                   $item = reset($item);
                 }
-                $replacements[$context['tokens'][$legacy_field]] = $item;
+                $replacements[$context['tokens'][$legacy_field]] = $sanitize ? check_plain($item) : $item;
               }
             }
           }
