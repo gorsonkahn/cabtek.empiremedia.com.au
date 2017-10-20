@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Code for the Empire custom module
+ */
+
+/*function empire_commerce_shipping_service_rate_options_alter(&$options, $order) {
+
+ //Cycle through each shipping rate, create array of costs
+ //Use array_multisort to sort the $options array by price lowest to highest.
+ $amounts = array();
+ foreach($options as $key => $shipping_rate) {
+	 $shipping_rate_cost = explode(':', $shipping_rate);
+	 $amounts[] = $shipping_rate_cost[1];
+	}
+	array_multisort($amounts, SORT_ASC, $options);
+}*/

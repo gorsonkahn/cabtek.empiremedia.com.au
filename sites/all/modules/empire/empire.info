@@ -1,0 +1,4 @@
+name = Empire
+description = Custom Empire functions. Includes:<br><ul><li>Shipping methods list weight</li></ul>
+core = 7.x
+version = 7.x-1.0

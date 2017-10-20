@@ -33,9 +33,6 @@ a:hover{
 #page_top .block {
 	width:50%;
 }
-#page_top a {
-
-}
 #page_top .menu a {
 	padding-left:36px !important ;
 }
@@ -213,7 +210,7 @@ table.commerce-price-formatted-components tbody {
 	border-bottom:2px solid #e74c3c
 }
 tr.even td, tr.odd td {
-	padding: 10px 5px;g
+	padding: 10px 5px;
 }
 tr.odd {
 	background-color: white;
@@ -322,7 +319,16 @@ BLOCKS
 	padding:1em;
 	margin: 1.5em 0
 }
-
+.google-frame {
+	display:block;
+	height:316px;
+}
+.google-frame iframe{
+	position:absolute;
+	width:100%;
+	left:0;
+	height:300px
+}
 /*
 PRODUCT DISPLAY
 */
@@ -494,7 +500,6 @@ CHECKOUT PROCESS
 ol.inline.commerce-checkout-progress {
 	color:#fff;
 	margin-bottom:1rem;
-	background:#e74c3c
 }
 ol.inline.commerce-checkout-progress li{
 	width: auto;
@@ -579,7 +584,8 @@ AJAX PROGRESS THROBBER OVERRIDE
 	position:relative;
 	padding:0 0 0 6px
 }
-.ajax-progress .throbber {
+.ajax-progress .throbber,
+#content .checkout-processing  {
   background-image:url(../images/optimized/throbber_13.gif);
 	background-repeat:no-repeat;
 	background-size:cover;
